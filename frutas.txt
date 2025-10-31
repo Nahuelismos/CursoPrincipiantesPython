@@ -1,0 +1,5 @@
+f Banana 2000
+f Pera 2000
+f Manzana 1000
+f Uvas 3200
+v acelga 800
