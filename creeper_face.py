@@ -1,0 +1,30 @@
+from turtle import *
+
+setup(800, 800, 0, 0)
+title("Aww man")
+pensize(5)
+fillcolor("green")
+begin_fill()
+goto(300,0)
+goto(300,200)
+goto(100,200)
+goto(100,-100)
+goto(200,-100)
+goto(200,-300)
+goto(100,-300)
+goto(100,-200)
+
+goto(0,-200)
+
+goto(-100,-200)
+goto(-100,-300)
+goto(-200,-300)
+goto(-200,-100)
+goto(-100,-100)
+goto(-100,200)
+goto(-300,200)
+goto(-300,0)
+goto(0,0)
+end_fill()
+
+exitonclick()
