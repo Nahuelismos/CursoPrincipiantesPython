@@ -16,7 +16,7 @@ def cuadrado():
 
 def pentagono():
   flecha.color("blue")
-  for i in range(5):
+  for i x|in range(5):
     flecha.forward(100)
     flecha.left(72)
 
