@@ -12,11 +12,12 @@ def seleccionarExcel(): #ventanita de texto
                                          filetypes=[("Archivo tipos Excel",".xlsx")]
                                         );
     return archivo
-def datosCorrectos(tipoFacturaValor,CUITValor):
+def datosCorrectos():
    #retirnar verdadora o falso si los datos on correctos
    #por ejemplo si los impuestos son numeros, 
    #Que el cuit sea el formato correcto XX-XXXXXXXX-X por ejemplo
-   return true
+   return True
+
 def guardarDatos(): #accion de guardar
    ruta = seleccionarExcel() #seleccionamos el archivo
    wb = op.load_workbook(ruta) #abrimos el archivo
@@ -24,16 +25,18 @@ def guardarDatos(): #accion de guardar
 
    datosFacturacion = [tipo_factura_valor.get().strip(),
                        fecha_calendario.get().strip(),
-                       "30-4567577899-22"
+                       factura_nro.get().strip(),
+                       CUIL_valor.get().strip(),
+                       importeTotal.get().strip()
                        ] ##aca se guardan los datos
-   if(datosCorrectos(tipo_factura_valor)))
+   if(datosCorrectos()):
       ultimaFila = ws.max_row +1 #con ws.max_row selecciono la ultima fila, con +1 paso a la siguiente
       #Guardar datos en ultima fila en columnas por cada dato
       for columaSelecionada, valorSelecionada in enumerate(datosFacturacion, start= 1): #con start arranca en 1 la columna
          ws.cell(row=ultimaFila,column=columaSelecionada,value = valorSelecionada)
       
       wb.save(ruta) #guardar en la ruta especificada
-   else
+   else:
       print("Error") #usar messagebox para mostrar el error.
 
 
@@ -62,13 +65,13 @@ rBX= ttk.Radiobutton(panelIzquierdo, text ="X", value="X", variable=tipo_factura
 #===========================================#
 #             Fecha
 #===========================================#
-ttk.Label(root, text=" Fecha: ").place(x=50, y= 70)
+ttk.Label(panelDerecho, text=" Fecha: ").place(x=50, y= 70)
 #opcion 1
 #fecha_calendario = ttk.Entry(root)
 #fecha_calendario.insert(0, datetime.today().strftime("%d-%m-%Y"))
 
 #opcion 2
-fecha_calendario = DateEntry(root, date_pattern="dd-mm-yy")
+fecha_calendario = DateEntry(panelDerecho, date_pattern="dd-mm-yy")
 ##fecha_calendario.set_date(datetime.today())
 
 fecha_calendario.place(x=50,y=90)
@@ -77,20 +80,27 @@ fecha_calendario.place(x=50,y=90)
 #             Numero Factura
 #===========================================#
 factura_nro = tk.StringVar() ##guardar valor
-ttk.Label(root, text="Numero de factura").place(x=50, y = 110)
-ttk.Entry(root,textvariable= factura_nro).place(x=50, y= 130)
+ttk.Label(panelDerecho, text="Numero de factura").place(x=50, y = 110)
+ttk.Entry(panelDerecho,textvariable= factura_nro).place(x=50, y= 130)
+
+#===========================================#
+#             CUIL
+#===========================================#
+CUIL_valor = tk.StringVar() ##guardar valor
+ttk.Label(panelDerecho, text="CUIL").place(x=50, y = 150)
+ttk.Entry(panelDerecho,textvariable= CUIL_valor).place(x=50, y= 170)
 
 
 #===========================================#
 #             Importe Total
 #===========================================#
 importeTotal = tk.StringVar() ##guardar valor
-ttk.Label(root, text="ImporteTotal").place(x=50, y = 150)
-ttk.Entry(root, textvariable=importeTotal).place(x=50, y= 170)
+ttk.Label(root, text="ImporteTotal").place(x=50, y = 190)
+ttk.Entry(root, textvariable=importeTotal).place(x=50, y= 210)
 
 
 #===========================================#
-#             Numero Factura
+#              Boton Guardar
 #===========================================#
 botonGuardar = tk.Button(panelIzquierdo,text="GuardarAchivo",command=guardarDatos)
 botonGuardar.place(x=350, y=250)
